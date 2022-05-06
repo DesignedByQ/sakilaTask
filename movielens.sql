@@ -36,6 +36,13 @@ HAVING average_rating = (
 )
 ORDER BY average_rating;
 
+--or
+SELECT title, AVG(ratings.rating) 
+FROM movies 
+JOIN ratings ON movies.id = ratings.movie_id 
+GROUP BY title 
+HAVING AVG(ratings.rating) = (SELECT MIN(rating) FROM ratings);
+
 --List the unique titles of each of the movies released on the most popular release day.
 
 SELECT title
